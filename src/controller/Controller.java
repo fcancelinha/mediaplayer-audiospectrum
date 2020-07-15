@@ -91,7 +91,7 @@ public class Controller{
     private final RotateTransition rotate = new RotateTransition();
     private Stage stage;
     private Image image, play, pause, mute, unmute;
-    private ListView<HBoxCell> dynamicListSelection; //para interagir com a listview dinâmica
+    private ListView<HBoxCell> dynamicListSelection; 
 
 
     @FXML public void initialize() {
@@ -148,7 +148,7 @@ public class Controller{
         }
     }
 
-    @FXML private void deleteAccount(){ //Alert window //melhorar este método
+    @FXML private void deleteAccount(){
         user.deleteUser();
         logStatus();
     }
