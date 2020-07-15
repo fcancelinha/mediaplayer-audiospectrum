@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <BorderPane fx:id="teste" layoutX="-1.0" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;">
+         <top>
+            <AnchorPane fx:id="drag" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="406.0" style="-fx-background-color: linear-gradient(to right, #a80000, #ff0202);">
+               <children>
+                  <Button fx:id="BTclose" contentDisplay="CENTER" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#drawer" style="-fx-background-color: Transparent;" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/back.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-1.0" />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="BTopen" contentDisplay="CENTER" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#drawer" style="-fx-background-color: Transparent;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/list.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-1.0" />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="366.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#closeApp" prefHeight="42.0" prefWidth="39.0" style="-fx-background-color: Transparent;" styleClass="closeButton" stylesheets="@../styles.css" text="X" textFill="#0000009f">
+                     <font>
+                        <Font name="Marlett" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="341.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#minimizeApp" opacity="0.5" style="-fx-background-color: transparent;" text="_" textFill="#0000007e">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane fx:id="ApanelCenter" prefHeight="507.0" prefWidth="325.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="panePlaylist" layoutX="-61.0" prefHeight="516.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-100.0" AnchorPane.leftAnchor="-65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="txtplaylistName" layoutX="88.0" layoutY="36.0" prefHeight="14.0" prefWidth="223.0" />
+                        <Button fx:id="BTaddPlaylist" layoutX="316.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#addPlaylist" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label fx:id="lblplaylistWarning" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="64.0" prefHeight="21.0" prefWidth="225.0" textOverrun="CENTER_WORD_ELLIPSIS" />
+                        <Button contentDisplay="RIGHT" layoutX="287.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addMusic" style="-fx-background-color: Transparent;" text="Add Music">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/addSong.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Label fx:id="lblplaylistWarning1" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="7.0" prefHeight="21.0" prefWidth="139.0" text="PLAYLISTS" textFill="#636363" textOverrun="CENTER_WORD_ELLIPSIS">
+                           <font>
+                              <Font name="Tahoma Bold" size="15.0" />
+                           </font></Label>
+                        <TabPane fx:id="tabpaneplaylists" layoutX="2.0" layoutY="122.0" prefHeight="388.0" prefWidth="400.0" style="-fx-background-color: Transparent; -fx-border-color: transparent; -fx-padding: 0px;" />
+                     </children>
+                     <effect>
+                        <InnerShadow height="44.65" radius="10.6625" width="0.0" />
+                     </effect>
+                  </Pane>
+                  <Pane fx:id="paneSettings" layoutX="-65.0" prefHeight="512.0" prefWidth="406.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-100.0" AnchorPane.leftAnchor="-65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <effect>
+                        <InnerShadow height="44.65" radius="10.6625" width="0.0" />
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" layoutX="140.0" layoutY="21.0" prefHeight="28.0" prefWidth="126.0" text="Settings" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="27.0" />
+                           </font>
+                        </Label>
+                        <Accordion fx:id="settingsAccordion" layoutY="95.0" prefHeight="412.0" prefWidth="406.0" style="-fx-background-color: Transparent;" stylesheets="@../styles.css">
+                          <panes>
+                            <TitledPane expanded="false" graphicTextGap="20.0" prefWidth="406.0" style="-fx-background-color: Transparent;" text="Account Settings" textAlignment="CENTER">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                       <children>
+                                          <PasswordField fx:id="txtAlterPasswordOld" layoutX="171.0" layoutY="47.0" prefHeight="27.0" prefWidth="151.0" />
+                                          <PasswordField fx:id="txtAlterPasswordNew" layoutX="171.0" layoutY="97.0" />
+                                          <PasswordField fx:id="txtAlterPasswordRepeat" layoutX="171.0" layoutY="149.0" />
+                                          <Label layoutX="34.0" layoutY="52.0" prefHeight="17.0" prefWidth="105.0" text="Current Password">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="42.0" layoutY="102.0" prefHeight="17.0" prefWidth="101.0" text="New Password" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="38.0" layoutY="154.0" prefHeight="17.0" prefWidth="98.0" text="Repeat Password">
+                                             <font>
+                                                <Font name="Segoe UI Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="BTAlterPassword" alignment="CENTER" layoutX="198.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#alterPassword" style="-fx-background-color: #333333;" text="Alter Password" textAlignment="CENTER" textFill="WHITE">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button fx:id="BTDeleteAccount" alignment="CENTER" layoutX="37.0" layoutY="240.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="27.0" prefWidth="101.0" style="-fx-background-color: D3321F;" text="Delete Account" textAlignment="CENTER" textFill="WHITE">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Label fx:id="lblAlterWarnings" alignment="CENTER" layoutX="116.0" layoutY="6.0" prefHeight="22.0" prefWidth="262.0" textAlignment="CENTER" textFill="#ff9400">
+                                             <font>
+                                                <Font name="Calibri Bold" size="12.0" />
+                                             </font>
+                                          </Label>
+                                       </children></AnchorPane>
+                              </content>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/lock.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="13.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                            </TitledPane>
+                              <TitledPane expanded="false" graphicTextGap="20.0" layoutX="10.0" layoutY="10.0" prefWidth="406.0" style="-fx-background-color: Transparent;" text="Color Scheme" textAlignment="CENTER">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                       <children>
+                                          <HBox alignment="CENTER" layoutX="14.0" layoutY="35.0" prefHeight="85.0" prefWidth="369.0">
+                                             <children>
+                                                <Button fx:id="SUNRISE" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to right, #00f1ff, #f4b300);">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button fx:id="WAVES" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to right, #1fc4d3, #1396a3);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button fx:id="ZEST" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to right, #ffa100, #ffcf22);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button fx:id="BLOOD" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to right, #a80000, #ff0202);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" layoutX="14.0" layoutY="120.0" prefHeight="85.0" prefWidth="369.0">
+                                             <children>
+                                                <Button fx:id="MIST" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to right, #649173, #dbd5a4);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button fx:id="LEMON" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to right, #e65c00, #f9d423);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button fx:id="MOSS" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to left,  #FFE000, #799F0C);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                                <Button fx:id="SUMMER" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#changeStyle" prefHeight="74.0" prefWidth="76.0" style="-fx-background-color: linear-gradient(to left,  #FF3366, #BA265D);;">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets left="7.0" />
+                                                   </HBox.margin>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="227.0" prefHeight="29.0" prefWidth="214.0" text="Press any color to theme the player" textFill="#0000007a">
+                                             <font>
+                                                <Font name="Calibri Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children></AnchorPane>
+                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/paint.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </TitledPane>
+                              <TitledPane graphicTextGap="20.0" layoutX="10.0" layoutY="10.0" prefWidth="406.0" style="-fx-background-color: Transparent;" text="Credits" textAlignment="CENTER">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                       <children>
+                                          <TextArea editable="false" layoutX="27.0" layoutY="3.0" prefHeight="229.0" prefWidth="351.0" text="JAVA project - Filipe Cancelinha TPSI CAS 09/19&#10;&#10;[FEATURES]&#10;&#10;Audio Spectrum&#10;Animations&#10;Theming&#10;User Accounts&#10;Standard Media Controls&#10;Dynamic Control Generation&#10;DB connection&#10;Dark Mode&#10; &#10;Source code is available at github , you can easily&#10;it through the github icon." wrapText="true">
+                                             <font>
+                                                <Font name="Calibri Bold" size="13.0" />
+                                             </font>
+                                          </TextArea>
+                                          <Button fx:id="github" contentDisplay="RIGHT" layoutX="295.0" layoutY="239.0" mnemonicParsing="false" onMouseClicked="#openGithub" style="-fx-background-color: Black;" text="Github" textFill="WHITE">
+                                             <graphic>
+                                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/logo.png" />
+                                                   </image>
+                                                   <effect>
+                                                      <ColorAdjust brightness="1.0" />
+                                                   </effect>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children></AnchorPane>
+                                 </content>
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/info.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="13.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </children></Pane>
+                  <Pane fx:id="paneRegistration" layoutX="-61.0" prefHeight="510.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-100.0" AnchorPane.leftAnchor="-65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="82.0" fitWidth="92.0" layoutX="161.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/user.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="txtRegisterUsername" alignment="CENTER" layoutX="128.0" layoutY="190.0" promptText="Username" style="-fx-background-radius: 10px;" />
+                        <TextField fx:id="txtRegisterSecret" alignment="CENTER" layoutX="128.0" layoutY="230.0" promptText="Secret" style="-fx-background-radius: 10px;" />
+                        <Button fx:id="BTRegisterUser" alignment="CENTER" layoutX="163.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#registerUser" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: Black; -fx-background-radius: 10px;" text="Register" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label fx:id="lblRegisterWarnings" alignment="CENTER" layoutX="90.0" layoutY="429.0" prefHeight="22.0" prefWidth="227.0" />
+                        <PasswordField fx:id="txtRegisterPassword1" alignment="CENTER" layoutX="128.0" layoutY="271.0" promptText="Password" style="-fx-background-radius: 10px;" />
+                        <PasswordField fx:id="txtRegisterPassword2" alignment="CENTER" layoutX="128.0" layoutY="314.0" promptText="Verify Password" style="-fx-background-radius: 10px;" />
+                        <Hyperlink fx:id="loginLink" layoutX="239.0" layoutY="400.0" text="Login" />
+                        <Label layoutX="128.0" layoutY="403.0" prefHeight="17.0" prefWidth="117.0" text="Already registered ?">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <InnerShadow height="44.65" radius="10.6625" width="0.0" />
+                     </effect>
+                  </Pane>
+                  <Pane fx:id="paneUser" layoutX="-67.0" prefHeight="510.0" prefWidth="406.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-100.0" AnchorPane.leftAnchor="-67.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="89.0" fitWidth="83.0" layoutX="162.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/user.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="txtUsername" alignment="CENTER" layoutX="115.0" layoutY="219.0" prefHeight="25.0" prefWidth="180.0" promptText="Username" style="-fx-background-radius: 10px;" />
+                        <Button fx:id="BTsignIn" alignment="CENTER" layoutX="169.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#checkLogin" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: Black; -fx-background-radius: 10px;" text="Sign In" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <PasswordField fx:id="txtPassword" alignment="CENTER" layoutX="114.0" layoutY="263.0" prefHeight="25.0" prefWidth="180.0" promptText="Password" style="-fx-background-radius: 10px;" />
+                        <Hyperlink fx:id="registerLink" layoutX="225.0" layoutY="359.0" text="register" />
+                        <Label layoutX="136.0" layoutY="362.0" text="Not registered ?">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblWarnings" alignment="CENTER" layoutX="91.0" layoutY="401.0" prefHeight="26.0" prefWidth="228.0" />
+                        <Hyperlink fx:id="recoverLink" layoutX="232.0" layoutY="382.0" text="recover" />
+                        <Label layoutX="130.0" layoutY="385.0" text="Forgot password ?">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <InnerShadow height="44.65" radius="10.6625" width="0.0" />
+                     </effect>
+                  </Pane>
+                  <Pane fx:id="recoverPassword" prefHeight="510.0" prefWidth="406.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-100.0" AnchorPane.leftAnchor="-67.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="txtRecoverUsername" alignment="CENTER" layoutX="114.0" layoutY="139.0" prefHeight="25.0" prefWidth="180.0" promptText="Username" style="-fx-background-radius: 10px;" />
+                        <Button fx:id="BTrecover" alignment="CENTER" layoutX="169.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#recoverPassword" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: Black; -fx-background-radius: 10px;" text="Recover" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <PasswordField fx:id="txtRecoverSecret" alignment="CENTER" layoutX="114.0" layoutY="179.0" prefHeight="25.0" prefWidth="180.0" promptText="Secret" style="-fx-background-radius: 10px;" />
+                        <Hyperlink fx:id="backRecoverLogin" layoutX="227.0" layoutY="224.0" text="back" />
+                        <Label layoutX="149.0" layoutY="227.0" text="Back to login ?">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblRecoverWarnings" alignment="CENTER" layoutX="106.0" layoutY="298.0" prefHeight="29.0" prefWidth="206.0">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneMediaPlayer" layoutX="-65.0" prefHeight="510.0" prefWidth="406.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="-100.0" AnchorPane.leftAnchor="-65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AreaChart id="audioSpectrum" fx:id="spectrum" alternativeRowFillVisible="false" animated="false" createSymbols="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="-16.0" layoutY="399.0" legendVisible="false" opacity="0.4" prefHeight="119.0" prefWidth="439.0" style="-fx-padding: 0px; -fx-background-color: Transparent;" stylesheets="@../styles.css" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                          <xAxis>
+                            <CategoryAxis opacity="0.0" side="BOTTOM" style="-fx-background-color: Transparent; -fx-padding: 0px;" stylesheets="@../styles.css" tickLabelsVisible="false" tickMarkVisible="false" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis autoRanging="false" minorTickVisible="false" opacity="0.0" prefHeight="177.0" prefWidth="0.0" side="RIGHT" style="-fx-padding: 0px; -fx-background-color: Transparent;" stylesheets="@../styles.css" tickLabelsVisible="false" tickMarkVisible="false" visible="false" />
+                          </yAxis>
+                        </AreaChart>
+                        <Label fx:id="lbl_songName" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="330.0" prefHeight="41.0" prefWidth="301.0" style="-fx-background-color: Transparent; -fx-background-radius: 20px;" text="Select a Music" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="Calibri Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblArtist" alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="376.0" prefHeight="34.0" prefWidth="224.0" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblAlbum" alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="410.0" prefHeight="34.0" prefWidth="225.0" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Circle fx:id="circularImage" fill="WHITE" layoutX="207.0" layoutY="188.0" radius="121.0" stroke="#0000003d" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0">
+                           <effect>
+                              <DropShadow blurType="GAUSSIAN" color="#5b5b5b6e" height="40.27" radius="18.5225" width="35.82" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Circle>
+                        <Circle fill="WHITE" layoutX="207.0" layoutY="188.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                           <effect>
+                              <InnerShadow blurType="GAUSSIAN" height="15.0" radius="7.0" width="15.0" />
+                           </effect></Circle>
+                     </children>
+                     <effect>
+                        <InnerShadow height="44.65" radius="10.6625" width="0.0" />
+                     </effect></Pane>
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <AnchorPane fx:id="paneMediaControls" prefHeight="100.0" prefWidth="408.0" style="-fx-background-color: Transparent;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="miniArea" alignment="CENTER" prefHeight="70.0" prefWidth="406.0" style="-fx-background-color: linear-gradient(to right, #a80000, #ff0202);">
+                     <children>
+                        <Button fx:id="mediaControlsUp" mnemonicParsing="false" onMouseClicked="#mediaDrawerDown" prefHeight="17.0" prefWidth="21.0" style="-fx-background-color: Transparent;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
+                                 <image>
+                                    <Image url="@../img/down-arrow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <ImageView fx:id="miniCoverArt" fitHeight="50.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" top="2.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow height="29.9" radius="18.1575" spread="0.17" width="44.73" />
+                           </effect>
+                        </ImageView>
+                        <VBox prefHeight="60.0" prefWidth="327.0">
+                           <children>
+                              <Label fx:id="miniSongName" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="306.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="miniAlbumName" prefHeight="27.0" prefWidth="277.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <AnchorPane fx:id="movableMediaControls" prefHeight="100.0" prefWidth="406.0" style="-fx-background-color: linear-gradient(to right, #a80000, #ff0202);">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="77.0" layoutY="39.0" prefHeight="40.0" prefWidth="253.0" style="-fx-background-color: Transparent; -fx-background-radius: 30px;">
+                           <children>
+                              <ToggleButton fx:id="TGrepeat" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setRepeat" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: Transparent;">
+                                 <graphic>
+                                    <ImageView fx:id="repeatImage" fitHeight="20.0" fitWidth="20.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" styleClass="button">
+                                       <image>
+                                          <Image url="@../img/repeat.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="misc" />
+                                 </toggleGroup>
+                              </ToggleButton>
+                              <Button fx:id="BTprevious" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#previousMusic" style="-fx-background-color: Transparent;">
+                                 <HBox.margin>
+                                    <Insets left="22.0" right="5.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" styleClass="hoverbutton">
+                                       <image>
+                                          <Image url="@../img/previous.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <ToggleButton fx:id="TGplayPause" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#playPause" style="-fx-background-color: Transparent;">
+                                 <graphic>
+                                    <ImageView fx:id="imagePlayPause" fitHeight="32.0" fitWidth="32.0" opacity="0.9" pickOnBounds="true" preserveRatio="true" styleClass="hoverbutton">
+                                       <image>
+                                          <Image url="@../img/play-button.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </ToggleButton>
+                              <Button fx:id="BTnext" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#nextMusic" style="-fx-background-color: Transparent;" textFill="#2e2929cf">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="20.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" styleClass="hoverbutton">
+                                       <image>
+                                          <Image url="@../img/next.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <ToggleButton fx:id="TGshuffle" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onMouseClicked="#setShuffle" style="-fx-background-color: Transparent;" toggleGroup="$misc">
+                                 <graphic>
+                                    <ImageView fx:id="shuffleImage" fitHeight="20.0" fitWidth="20.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" styleClass="hoverbutton">
+                                       <image>
+                                          <Image url="@../img/change.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ToggleButton>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lbl_musicProgress" alignment="CENTER" layoutX="8.0" layoutY="10.0" prefHeight="17.0" prefWidth="51.0" text="00:00" textAlignment="CENTER" textFill="#000000d5" wrapText="true">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Slider fx:id="progress" blockIncrement="1.0" layoutX="63.0" layoutY="11.0" onMouseDragged="#setProgress" prefHeight="14.0" prefWidth="290.0" style="-fx-base: Transparent;" styleClass="musicProgressBar" stylesheets="@../styles.css">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Slider>
+                        <Slider fx:id="volume" blockIncrement="1.0" layoutX="365.0" layoutY="42.0" onMouseClicked="#setVolume" onMouseDragged="#setVolume" orientation="VERTICAL" prefHeight="44.0" prefWidth="23.0" style="-fx-background-color: Transparent; -fx-base: Transparent;" value="100.0" />
+                        <ToggleButton fx:id="TGmute" layoutX="360.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#setMute" style="-fx-background-color: Transparent;">
+                           <graphic>
+                              <ImageView fx:id="muteImage" fitHeight="17.0" fitWidth="17.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/speaker.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ToggleButton>
+                        <Button fx:id="mediaControlsDown" layoutX="10.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#mediaDrawerDown" prefHeight="17.0" prefWidth="21.0" style="-fx-background-color: Transparent;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/down-arrow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </bottom>
+         <left>
+            <AnchorPane fx:id="aDrawer" prefHeight="510.0" prefWidth="65.0" style="-fx-background-color: linear-gradient(to right, #a80000, #ff0202); -fx-background-radius: 0px 20px 20px 0px;" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fx:id="vDrawer" prefHeight="510.0" prefWidth="65.0" style="-fx-background-radius: 0px 30px 30px 0px;">
+                     <children>
+                        <Button fx:id="BTMediaPlayer" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: Transparent;" styleClass="hover-drawer-buttons" stylesheets="@../styles.css">
+                           <VBox.margin>
+                              <Insets left="15.0" right="6.0" top="100.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/music-player.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Home" textAlignment="CENTER" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="BTplaylist" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: Transparent;" styleClass="hover-drawer-buttons" stylesheets="@../styles.css">
+                           <VBox.margin>
+                              <Insets left="15.0" right="6.0" top="40.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/playlist.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Create Playlists and choose musics" textAlignment="CENTER" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="BTsettings" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: Transparent;" styleClass="hover-drawer-buttons" stylesheets="@../styles.css">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Settings" textAlignment="CENTER" />
+                           </tooltip>
+                           <VBox.margin>
+                              <Insets left="15.0" right="6.0" top="40.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="BTlogout" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: Transparent;" styleClass="hover-drawer-buttons" stylesheets="@../styles.css">
+                           <VBox.margin>
+                              <Insets bottom="40.0" left="15.0" right="6.0" top="40.0" />
+                           </VBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/login.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <tooltip>
+                              <Tooltip text="Logout" textAlignment="CENTER" />
+                           </tooltip>
+                        </Button>
+                        <ToggleButton fx:id="darkMode" mnemonicParsing="false" onMouseClicked="#darkMode" style="-fx-background-color: transparent;" styleClass="hover-drawer-buttons" stylesheets="@../styles.css">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/sun.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets left="13.0" top="40.0" />
+                           </VBox.margin>
+                           <tooltip>
+                              <Tooltip text="Dark Mode" />
+                           </tooltip>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ToggleButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

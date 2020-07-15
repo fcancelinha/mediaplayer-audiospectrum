@@ -1,0 +1,46 @@
+/* DRAWER BUTTON DROPSHADOW ON HOVER*/
+.hover-drawer-buttons:hover{
+
+-fx-effect: dropshadow(three-pass-box, black, 10, 0.2, 0, 0);
+}
+
+/* CHART COLORING */
+
+.chart-plot-background {
+    -fx-background-color: Transparent;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: Transparent;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: Transparent;
+}
+.chart-alternative-row-fill {
+    -fx-fill: Transparent;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+
+.default-color0.chart-series-area-line {
+    -fx-stroke: Transparent;
+}
+
+.default-color0.chart-series-area-fill {
+    -fx-fill: RED;
+}
+
+/* TITLE PANE STYLING */
+
+.accordion .titled-pane .title {
+    -fx-background-color: transparent ;
+}
+
+/* GRAPHICSS */
+
+.closeButton:hover{
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0.5, 0, 0);
+}
+
+
+
+
