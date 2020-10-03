@@ -183,7 +183,7 @@ END CATCH
 
 --PLAYLIST
 
--- INSERÇÃO DE PLAYLISTS
+-- INSERÃ‡ÃƒO DE PLAYLISTS
 
 GO
 create or alter proc usp_addPlaylist(@nome nvarchar(100), @idUtilizador int, @output nvarchar(300) output) AS
@@ -289,7 +289,7 @@ BEGIN TRY
 		SELECT @IDESTILO = ESTILO.ID from ESTILO where ESTILO.ESTILO = @estilo
 	
 BEGIN TRAN
-		--INSERÇÃO OU UPDATE DA MÚSICA
+		--INSERÃ‡ÃƒO OU UPDATE DA MÃšSICA
 	IF NOT EXISTS (SELECT '*' FROM MUSICA WHERE MUSICA.NOME = @nome AND MUSICA.LOCALIZACAO = @localizacao)
 		insert into MUSICA values(@nome, @localizacao, @IDALBUM, @IDARTISTA, @IDESTILO)
 	ELSE
@@ -301,7 +301,7 @@ BEGIN TRAN
 		  where MUSICA.NOME = @nome and MUSICA.LOCALIZACAO = @localizacao
 		END
 
-	--LIGAÇÃO DA MÚSICA À TABELA INTERMÉDIA -- ADICIONAR SAFEGUARD
+	--LIGAÃ‡ÃƒO DA MÃšSICA Ã€ TABELA INTERMÃ‰DIA -- ADICIONAR SAFEGUARD
 
 		INSERT INTO PLAYMUSIC VALUES((select MUSICA.ID from MUSICA where MUSICA.NOME = @nome),
 									 (select PLAYLISTS.ID from PLAYLISTS where PLAYLISTS.NOME = @playlistID AND PLAYLISTS.ID_UTILIZADOR = @IDutilizador),
@@ -339,7 +339,7 @@ select * from PLAYMUSIC
 select * from UTILIZADOR
 
 
--- REMOVER MÚSICA 
+-- REMOVER MÃšSICA 
 
 GO
 CREATE OR ALTER PROC usp_DeleteMusic(@playlistID nvarchar(100), @musicaID int, @IDuser int) AS
